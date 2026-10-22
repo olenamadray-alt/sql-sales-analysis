@@ -23,3 +23,5 @@ The output was visualized in a dashboard (screenshot below).
 - Total emails sent: 1,752,028
 - The United States leads by both accounts and sent emails, followed by India and Canada.
 - Email volume grows from November 2020, peaks around December 2020, and declines by February 2021.
+
+  ![Dashboard](dashboard.png)
