@@ -1,4 +1,4 @@
--- Дата і країна
+-- Date and country
 WITH session_data AS (
   SELECT
     account_session.account_id,
@@ -13,7 +13,7 @@ WITH session_data AS (
     ON account_session.account_id = account.id
 ),
 
--- Метрики по акаунтах
+-- Account metrics
 account_metrics AS (
   SELECT
     DATE(session_data.date) AS date,
@@ -36,7 +36,7 @@ account_metrics AS (
     account.is_unsubscribed
 ),
 
--- Метрики по емейлах
+-- Email metrics
 email_metrics AS (
   SELECT
     date_add(session_data.date, INTERVAL sent_date DAY) AS date,
@@ -71,7 +71,7 @@ combined AS (
   SELECT * FROM email_metrics
 ),
 
--- Агрегація по розрізах
+-- Aggregation by dimensions
 aggregated AS (
   SELECT
     date,
@@ -92,7 +92,7 @@ aggregated AS (
     is_unsubscribed
 ),
 
--- Тотали по країнах
+-- Country totals
 country_totals AS (
   SELECT
     *,
@@ -101,7 +101,7 @@ country_totals AS (
   FROM aggregated
 ),
 
--- Ранги
+-- Rankings
 ranked AS (
   SELECT
     *,
@@ -110,7 +110,7 @@ ranked AS (
   FROM country_totals
 )
 
--- Фінал
+-- Final result
 SELECT
   date,
   country,
